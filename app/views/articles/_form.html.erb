@@ -1,0 +1,25 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-10">
+      <%= render 'shared/errors' %>
+      <%= form_with(model: @article, class: "p-3 shadow mb-5 bg-white rounded", local: true) do |f| %>
+        <div class="form-group">
+          <%= f.label :title, "Título del Artículo", class: "form-label fw-bold text-secondary" %>
+          <%= f.text_field :title, class: "form-control shadow-sm p-3 mb-2 rounded", aria_describedby: "Title", placeholder: "Enter title" %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :description, "Descripción", class: "form-label fw-bold text-secondary" %>
+          <%= f.text_area :description, rows: 10, class: "form-control shadow-sm p-3 mb-5 rounded", aria_describedby: "Title", placeholder: "Enter description" %>
+        </div>
+
+        <div class="d-flex justify-content-center my-4">
+          <%= f.submit class: "btn btn-outline-dark btn-lg" %>
+        </div>
+      <% end %>
+    </div>
+    <div class="col-12 text-center mb-3">
+      <%= link_to '[ Cancel and return to articles listing ]', articles_path, class: "text-muted" %>
+    </div>
+  </div>
+</div>
