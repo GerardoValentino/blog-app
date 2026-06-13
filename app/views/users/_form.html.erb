@@ -1,22 +1,30 @@
-<%= form_with(model: user) do |form| %>
-  <% if user.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-10">
+      <%= render 'shared/errors', obj: @user %>
+      <%= form_with(model: @user, class: "p-3 shadow mb-5 bg-white rounded", local: true) do |f| %>
+        <div class="form-group">
+          <%= f.label :username, "User Name", class: "form-label fw-bold text-secondary" %>
+          <%= f.text_field :username, class: "form-control shadow-sm p-3 mb-2 rounded", aria_describedby: "Username", placeholder: "Enter a user name" %>
+        </div>
 
-      <ul>
-        <% user.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
+        <div class="form-group">
+          <%= f.label :email, "Email", class: "form-label fw-bold text-secondary" %>
+          <%= f.email_field :email,  class: "form-control shadow-sm p-3 mb-5 rounded", aria_describedby: "Email", placeholder: "Enter your email address" %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :password, "Password", class: "form-label fw-bold text-secondary" %>
+          <%= f.password_field :password,  class: "form-control shadow-sm p-3 mb-5 rounded", aria_describedby: "Email", placeholder: "Choose a password" %>
+        </div>
+
+        <div class="d-flex justify-content-center my-4">
+          <%= f.submit "Sign Up", class: "btn btn-outline-dark btn-lg" %>
+        </div>
+      <% end %>
     </div>
-  <% end %>
-
-  <div>
-    <%= form.label :username, style: "display: block" %>
-    <%= form.text_field :username %>
+    <div class="col-12 text-center mb-3">
+      <%= link_to '[ Cancel and return to articles listing ]', articles_path, class: "text-muted" %>
+    </div>
   </div>
-
-  <div>
-    <%= form.submit %>
-  </div>
-<% end %>
+</div>
